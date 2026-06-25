@@ -6,6 +6,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ให้ใช้ any ได้เฉพาะกรณีนี้ @any-rule.md
 
+## Development Guidelines
+For TypeScript code style and best practices, please refer to @docs/typescript-guidelines.md
+
 # nextjs-ai-app-starter (Next.js 16 E-Commerce)
 
 ## Dev commands
