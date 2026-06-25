@@ -9,6 +9,9 @@ import {
   Clock 
 } from "lucide-react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 import { KpiCard, KpiCardSkeleton } from "@/components/admin/kpi-card";
 import { PeriodSelector } from "@/components/admin/period-selector";
@@ -109,8 +112,15 @@ export default function DashboardClient() {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-4">
+          <Button asChild variant="outline" size="sm">
+            <Link href="/" className="flex items-center gap-2">
+              <ArrowLeft className="h-4.5 w-4.5" /> กลับหน้าหลัก
+            </Link>
+          </Button>
+          <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
+        </div>
         <PeriodSelector value={period} onChange={(val) => setPeriod(val as any)} />
       </div>
 

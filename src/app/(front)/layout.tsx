@@ -17,9 +17,11 @@ export default function RootLayout({
     <html lang="th" className="font-sans">
       <body>
         <Suspense fallback={<div className="h-16 border-b bg-background" />}>
-        <Navbar />
+          <Navbar />
         </Suspense>
-        {children}
+        <Suspense fallback={<div className="flex items-center justify-center min-h-[50vh]">กำลังโหลด...</div>}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );

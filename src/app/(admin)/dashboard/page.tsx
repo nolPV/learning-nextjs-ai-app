@@ -8,7 +8,7 @@ export default async function Page() {
     headers: await headers(),
   });
 
-  if (!session || (session.user as any).role !== "admin") {
+  if (!session || session.user.role !== "admin") {
     redirect("/login");
   }
 
