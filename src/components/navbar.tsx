@@ -30,7 +30,7 @@ const Navbar = async () => {
         </Link>
 
         <div className="flex items-center gap-3">
-          
+
           {
             !session && (
               <>
@@ -48,7 +48,7 @@ const Navbar = async () => {
             session && (
               <>
                 <div className="flex items-center mr-4">
-                  สวัสดี, {session.user.name}
+                  สวัสดี!, {session.user.name}
                 </div>
                 <div>
                   <LogoutButton />
