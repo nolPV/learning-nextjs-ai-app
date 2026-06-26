@@ -1,8 +1,10 @@
 import FeaturesCourse from "@/components/features-course";
 import { getCourses } from "@/services/course.service";
+import { connection } from "next/server";
 
 // http://localhost:3000/course
 export default async function CoursePage() {
+  await connection();
   const courses = await getCourses();
 
   return (

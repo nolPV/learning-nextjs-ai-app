@@ -6,10 +6,10 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 
 # คัดลอก package files
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
-# ติดตั้ง dependencies ทั้งหมด (รวม devDependencies สำหรับ build)
-RUN npm ci && npm cache clean --force
+# ติดตั้ง pnpm และ dependencies (ignore scripts — build scripts ran in builder stage)
+RUN corepack enable && pnpm install --frozen-lockfile --ignore-scripts && pnpm store prune
 
 # Stage 2: Builder
 FROM node:24-alpine AS builder
@@ -21,6 +21,10 @@ COPY --from=deps /app/node_modules ./node_modules
 # คัดลอก source code ทั้งหมด
 COPY . .
 
+# ตั้งค่า Dummy DATABASE_URL เพื่อป้องกัน Prisma config ตรวจสอบความถูกต้องของ Env แล้วพังตอน build
+ARG DATABASE_URL=mysql://build:build@localhost:3306/build
+ENV DATABASE_URL=${DATABASE_URL}
+
 # Generate Prisma Client (v7 ใช้ driver adapter)
 RUN npx prisma generate
 
@@ -28,7 +32,7 @@ RUN npx prisma generate
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npm run build
+RUN corepack enable && pnpm run build
 
 # Stage 3: Runner
 FROM node:24-alpine AS runner
