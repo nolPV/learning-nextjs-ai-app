@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - ระบบ E-Commerce",
-  description: "ระบบหลังบ้าน E-Commerce",
+  title: "Admin Dashboard - E-Commerce",
+  description: "E-Commerce Admin Panel",
 };
 
 export default function AdminLayout({
@@ -13,9 +13,9 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className="font-sans">
+    <html lang="en" className="font-sans">
       <body>
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">กำลังโหลดแดชบอร์ด...</div>}>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading Dashboard...</div>}>
           {children}
         </Suspense>
       </body>

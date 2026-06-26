@@ -116,7 +116,7 @@ export default function DashboardClient() {
         <div className="flex flex-wrap items-center gap-4">
           <Button asChild variant="outline" size="sm">
             <Link href="/" className="flex items-center gap-2">
-              <ArrowLeft className="h-4.5 w-4.5" /> กลับหน้าหลัก
+              <ArrowLeft className="h-4.5 w-4.5" /> Back to Home
             </Link>
           </Button>
           <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
@@ -126,22 +126,22 @@ export default function DashboardClient() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard 
-          title="ยอดขายวันนี้" 
+          title="Today's Sales" 
           value={stats ? formatCurrency(stats.todaySales) : "฿0"} 
           icon={<TrendingUp className="h-4 w-4" />} 
         />
         <KpiCard 
-          title="คำสั่งซื้อวันนี้" 
+          title="Today's Orders" 
           value={stats ? stats.todayOrders : 0} 
           icon={<ShoppingBag className="h-4 w-4" />} 
         />
         <KpiCard 
-          title="รอดำเนินการ" 
+          title="Pending" 
           value={stats ? stats.pendingOrders : 0} 
           icon={<Clock className="h-4 w-4" />} 
         />
         <KpiCard 
-          title="ผู้ใช้งานทั้งหมด" 
+          title="Total Users" 
           value={stats ? stats.totalUsers : 0} 
           icon={<Users className="h-4 w-4" />} 
         />
